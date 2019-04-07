@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <title>say something to us</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+</head>
+<body>
+    <h1>say something to us</h1>
+    <ul>
+        <li onclick="changeName();">change name</li>
+        <li onclick="alert(`Made by mistopportunity with socket.io and <3.`);">about</li>
+        <li onclick="document.location = 'https://github.com/mistopportunity/say-something';">source code</li>
+    </ul>
+    <div id="messages">
+        <div class="message">
+            <p class="message-title">nothing to see here</p>
+            <p class="message-text">make sure you have JavaScript enabled and a reliable network connection!</p>
+        </div>
+    </div>
+    <div id="input-area">
+        <input id="text-input" maxlength="256" type="text" placeholder="type your message..."></input>
+        <button id="send-button">send</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
