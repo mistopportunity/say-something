@@ -53,7 +53,7 @@ const addMessageToInterface = function(message) {
     messageElement.appendChild(textElement);
     messageContainer.prepend(messageElement);
 }
-const socket = io.connect("http://localhost/hello-world");
+const socket = io.connect("/hello-world");
 
 socket.on("incoming-message", function(data) {
     const message = JSON.parse(data);
