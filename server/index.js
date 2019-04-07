@@ -1,13 +1,21 @@
 const express = require("express");
 const fs = require("fs");
 const app = express();
-const server = require("http").Server(app);
+var https = require("https");
+var server = https.createServer({
+    key: fs.readFileSync("./private key.pem"),
+    cert: fs.readFileSync("./certificate.pem"),
+    requestCert: false,
+    rejectUnauthorized: false
+},app);
+
+server.listen(8080);
 const io = require("socket.io")(server);
 const path = require("path");
 
 let cacheTimeout = null;
 const messageCacheTimeout = 20000;
-const serverPort = 80;
+const serverPort = 8080;
 
 const maxNameLength = "Kyndrajauna".length;
 const maxTextLength = 256;
