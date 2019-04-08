@@ -1,3 +1,6 @@
+{"name":"Bob","text":"THIS IS THE TIME THAT IT IS RIGHT NOW. REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.","date":1554758553857}
+{"name":"Bob","text":"Hello, world?","date":1554758242071}
+{"name":"Glue Dick","text":"/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/ raise your dongers \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\"}
 {"name":"Glue Dick","text":"{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}']''d]'as']das]'d]'as'\"}\"\"}]]'''}\"];;[{}'}[}[}'];''das]d;sad]as'\"asd]'das"}
 {"name":"OwO","text":";v"}
 {"name":"Glue Dick","text":">that's how it be sometimes"}

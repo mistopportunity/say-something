@@ -63,7 +63,7 @@ const loadOldMessages = function(callback) {
                 hadError = true;
             }
             if(!hadError) {
-                const processedMessage = processMessage(message);
+                const processedMessage = processMessage(message,true);
                 if(processedMessage) {
                     messageBuffer.push(processedMessage);
                 } else {
@@ -90,7 +90,10 @@ const nameIsTooLong = function(name) {
 const textIsTooLong = function(text) {
     return text.length > maxTextLength;
 }
-const processMessage = function(message) {
+const verifyMessageStringProperty = function(text) {
+    return text && typeof text === "string";
+}
+const processMessage = function(message,internal=false) {
     let messageData = typeof message === "object" ? message : null;
     try {
         if(!messageData) {
@@ -99,10 +102,10 @@ const processMessage = function(message) {
     } catch(exception) {
         return false;
     }
-    if(Object.keys(messageData).length !== 2) {
+    if(!internal && Object.keys(messageData).length !== 2) {
         return false;
     }
-    if(messageData.name && (messageData.name = messageData.name.trim()).length > 0) {
+    if(verifyMessageStringProperty(messageData.name) && (messageData.name = messageData.name.trim()).length > 0) {
         if(nameIsTooLong(messageData.name)) {
             return false;
         }
@@ -112,7 +115,7 @@ const processMessage = function(message) {
     } else {
         return false;
     }
-    if(messageData.text && (messageData.text = messageData.text.trim()).length > 0) {
+    if(verifyMessageStringProperty(messageData.text) && (messageData.text = messageData.text.trim()).length > 0) {
         if(textIsTooLong(messageData.text)) {
             return false;
         }
@@ -132,6 +135,7 @@ app.get("/", function(_,response) {
 });
 const namespace = io.of("hello-world");
 const sendMessageToClients = function(message) {
+    message.date = Date.now();
     namespace.emit("incoming-message",JSON.stringify(message));
     messageBuffer.unshift(message);
     clearTimeout(cacheTimeout);
@@ -157,4 +161,7 @@ const handleConnection = function(socket) {
 }
 namespace.on("connection",handleConnection);
 
-loadOldMessages(() => {server.listen(serverPort)});
+loadOldMessages(() => {
+    server.listen(serverPort);
+    console.log("Server started");
+});

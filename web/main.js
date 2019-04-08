@@ -37,6 +37,7 @@ const changeName = function() {
     }
 }
 const addMessageToInterface = function(message) {
+    const messageHasDate = message.date !== undefined;
     const messageElement = document.createElement("div");
     messageElement.className = "message";
     const titleElement = document.createElement("p");
@@ -44,8 +45,17 @@ const addMessageToInterface = function(message) {
     const textElement = document.createElement("p");
     textElement.className = "message-text";
     titleElement.appendChild(document.createTextNode(
-        `message from ${message.name}`
+        `message from ${message.name}${messageHasDate?" ":""}`
     ));
+    if(messageHasDate) {
+        const dateObject = new Date(message.date);
+        const dateString = dateObject.toUTCString();
+        const spanElement = document.createElement("span");
+        spanElement.appendChild(document.createTextNode(
+            dateString
+        ));
+        titleElement.appendChild(spanElement);
+    }
     textElement.appendChild(document.createTextNode(
         message.text
     ));

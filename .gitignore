@@ -1,3 +1,4 @@
 node_modules
 certificate.pem
 private key.pem
+messages.txt
